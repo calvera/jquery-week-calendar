@@ -2020,9 +2020,9 @@
        */
       _disableTextSelect: function($elements) {
           $elements.each(function() {
-            if ($.browser.mozilla) {//Firefox
+            if ($.browser && $.browser.mozilla) {//Firefox
                 $(this).css('MozUserSelect', 'none');
-            } else if ($.browser.msie) {//IE
+            } else if ($.browser && $.browser.msie) {//IE
                 $(this).bind('selectstart', function() {
                   return false;
                 });
