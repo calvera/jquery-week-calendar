@@ -203,6 +203,7 @@
          * @type {boolean}
          */
         displayFreeBusys: false,
+        preventCreateEventWhileBusy: true,
         /**
          * read the id(s) for who the freebusy is available
          * @param {Object} calEvent the calEvent to read informations from.
@@ -1133,6 +1134,14 @@
                 }
 
                 var freeBusyManager = self.getFreeBusyManagerForEvent(newCalEvent);
+
+                if (options.displayFreeBusys && options.preventCreateEventWhileBusy) {
+                  var bs,bss = freeBusyManager.getFreeBusys(newCalEvent.start, newCalEvent.end);
+                  bs = bss[0];
+                  if (bs && bs.options && !bs.options.free) {
+                    return;
+                  }
+                }
 
                 var $renderedCalEvent = self._renderEvent(newCalEvent, $weekDay);
 
@@ -2670,7 +2679,8 @@
         textSize: true,
         users: true,
         showAsSeparateUsers: true,
-        displayFreeBusys: true
+        displayFreeBusys: true,
+        preventCreateEventWhileBusy: true
       }
     });
 
