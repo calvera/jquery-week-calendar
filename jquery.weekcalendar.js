@@ -2709,7 +2709,7 @@
           this.options[key] = value;
           return this;
         },
-      isWithin: function(dateTime) {return Math.floor(dateTime.getTime() / 1000) >= Math.floor(this.getStart().getTime() / 1000) && Math.floor(dateTime.getTime() / 1000) <= Math.floor(this.getEnd().getTime() / 1000)},
+      isWithin: function(dateTime) {return Math.floor(dateTime.getTime() / 1000) >= Math.floor(this.getStart().getTime() / 1000) && Math.floor(dateTime.getTime() / 1000) < Math.floor(this.getEnd().getTime() / 1000)},
       isValid: function() {return this.getStart().getTime() < this.getEnd().getTime()}
     };
 
